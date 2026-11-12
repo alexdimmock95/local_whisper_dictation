@@ -72,6 +72,8 @@ sys.stdout.write(text)
                 if [[ -s "$TRANSCRIPT" ]]; then
                     cp "$TRANSCRIPT" "$LATEST_TRANSCRIPT"
                     /usr/bin/pbcopy < "$TRANSCRIPT"
+                    # Remove this successful run's temporary artifacts only.
+                    rm -f "$AUDIO" "$RESPONSE" "$TRANSCRIPT"
                     set_status "complete"
                     notify "Transcription copied to clipboard!"
                     echo "Whisper Dictation finished successfully."
